@@ -89,24 +89,6 @@ Requires Python 3.9+ (the code uses `dict[bytes, int]` style annotations).
 
 ---
 
-## Roadmap
-
-Known rough edges, kept as a to-do list rather than silently patched:
-
-- [ ] Run against the official CS336 assignment tests (`tests/test_train_bpe.py`, `tests/test_tokenizer.py`).
-- [ ] Train from a **file path** instead of an inline string, and support the TinyStories / OpenWebText corpora.
-- [ ] Handle special tokens consistently: `special_token_id` is passed as `1000` in the demo but
-      defaults to `1500` inside `encode.merging_match`, and special-token ids are never inserted into
-      `vocab`, so `decode` would raise `KeyError` on one.
-- [ ] Accept special tokens as **strings** (a list like `["<|endoftext|>"]`) instead of a magic int id.
-- [ ] Move the module-level demo code out of `encode.py` so importing it has no side effects.
-- [ ] Wrap everything in a `Tokenizer` class with `from_files` / `encode` / `encode_iterable` / `decode`.
-- [ ] Serialize `vocab` and `merges` to disk (JSON) instead of retraining every run.
-- [ ] **Performance**: `pair_counts` currently rescans the entire corpus after every merge (O(merges × corpus)).
-      Replace it with an incremental index of pair → affected sequences, and parallelize pre-tokenization.
-- [ ] Verify the tie-breaking rule matches the assignment spec exactly.
-
----
 
 ## Notes
 
